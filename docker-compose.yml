@@ -1,29 +1,44 @@
+#version: '3.8'
+#
+#services:
+#  elasticsearch_mystudentapp:
+#    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+#    container_name: elasticsearch_mystudentapp
+#    environment:
+#      - discovery.type=single-node
+#      - xpack.security.enabled=false
+#    ports:
+#      - "9200:9200"
+#    volumes:
+#      - esdata_mystudentapp:/usr/share/elasticsearch/data
+#
+#
+#  kibana_mystudentapp:
+#    image: docker.elastic.co/kibana/kibana:8.13.4
+#    container_name: kibana_mystudentapp
+#    ports:
+#      - "5601:5601"
+#    environment:
+#      - ELASTICSEARCH_HOSTS=http://elasticsearch_mystudentapp:9200
+#    depends_on:
+#      - elasticsearch_mystudentapp
+#
+#
+#  spring_mystudentapp:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: spring_mystudentapp
+#    ports:
+#      - "8081:8080"
+#    depends_on:
+#      - elasticsearch_mystudentapp
+#
+#volumes:
+#  esdata_mystudentapp:
 version: '3.8'
 
 services:
-  elasticsearch_mystudentapp:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
-    container_name: elasticsearch_mystudentapp
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-    ports:
-      - "9200:9200"
-    volumes:
-      - esdata_mystudentapp:/usr/share/elasticsearch/data
-
-
-  kibana_mystudentapp:
-    image: docker.elastic.co/kibana/kibana:8.13.4
-    container_name: kibana_mystudentapp
-    ports:
-      - "5601:5601"
-    environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch_mystudentapp:9200
-    depends_on:
-      - elasticsearch_mystudentapp
-
-
   spring_mystudentapp:
     build:
       context: .
@@ -31,8 +46,3 @@ services:
     container_name: spring_mystudentapp
     ports:
       - "8081:8080"
-    depends_on:
-      - elasticsearch_mystudentapp
-
-volumes:
-  esdata_mystudentapp:

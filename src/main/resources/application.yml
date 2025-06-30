@@ -3,5 +3,5 @@
 #    uris: http://localhost:9200
 #    connection-timeout: 10s
 #    socket-timeout: 10s
-#server:
-#  port: 8080
+server:
+  port: 8080
