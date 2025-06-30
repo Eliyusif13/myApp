@@ -2,26 +2,44 @@ package com.sadiqov.my_app.controller;
 
 import com.sadiqov.my_app.entitiy.Student;
 import com.sadiqov.my_app.service.StudentService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
-@RequestMapping("/myapp")
-@RequiredArgsConstructor
+@RequestMapping("/students")
 public class StudentController {
+    private final StudentService service;
 
-    private final StudentService studentService;
-
-    @PostMapping("/registerStudent")
-    public ResponseEntity<Student> save(@RequestBody Student student) {
-        return ResponseEntity.ok(studentService.save(student));
+    public StudentController(StudentService service) {
+        this.service = service;
     }
 
-    @GetMapping("/getAllStudent")
-    public ResponseEntity<List<Student>> getAll() {
-        return ResponseEntity.ok(studentService.getAll());
+    @GetMapping
+    public List<Student> getAll() {
+        return service.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Student getOne(@PathVariable Long id) {
+        return service.getById(id).orElseThrow(() -> new RuntimeException("Not found"));
+    }
+
+    @PostMapping
+    public Student create(@RequestBody Student student) {
+        return service.create(student);
+    }
+
+    @PutMapping("/{id}")
+    public Student update(@PathVariable Long id, @RequestBody Student student) {
+        return service.update(id, student);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
     }
 }
+

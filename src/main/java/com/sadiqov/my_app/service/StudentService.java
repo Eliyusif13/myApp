@@ -1,28 +1,42 @@
 package com.sadiqov.my_app.service;
 import com.sadiqov.my_app.entitiy.Student;
-import com.sadiqov.my_app.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 
 @Service
-@RequiredArgsConstructor
 public class StudentService {
-
-    private final StudentRepository studentRepository;
-
-    public Student save(Student student) {
-        return studentRepository.save(student);
-    }
+    private final Map<Long, Student> studentMap = new HashMap<>();
+    private Long idCounter = 1L;
 
     public List<Student> getAll() {
-        List<Student> list = new ArrayList<>();
-        studentRepository.findAll().forEach(list::add);
-        return list;
+        return new ArrayList<>(studentMap.values());
+    }
+
+    public Student create(Student student) {
+        student.setId(String.valueOf(idCounter++));
+        studentMap.put(Long.valueOf(student.getId()), student);
+        return student;
+    }
+
+    public Student update(Long id, Student updated) {
+        if (!studentMap.containsKey(id)) {
+            throw new RuntimeException("Student not found");
+        }
+        updated.setId(String.valueOf(id));
+        studentMap.put(id, updated);
+        return updated;
+    }
+
+    public void delete(Long id) {
+        studentMap.remove(id);
+    }
+
+    public Optional<Student> getById(Long id) {
+        return Optional.ofNullable(studentMap.get(id));
     }
 }
-
 
