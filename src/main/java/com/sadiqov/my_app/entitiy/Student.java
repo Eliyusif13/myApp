@@ -1,6 +1,5 @@
 package com.sadiqov.my_app.entitiy;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 @Data
 @AllArgsConstructor
@@ -8,7 +7,7 @@ import org.springframework.data.annotation.Id;
 @Builder
 public class Student {
 
-    @Id
+
     private String id;
 
     private String name;
