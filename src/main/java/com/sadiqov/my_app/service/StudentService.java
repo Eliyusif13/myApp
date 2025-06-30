@@ -1,7 +1,5 @@
 package com.sadiqov.my_app.service;
 import com.sadiqov.my_app.entitiy.Student;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

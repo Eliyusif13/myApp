@@ -8,4 +8,4 @@ services:
       dockerfile: Dockerfile
     container_name: spring_mystudentapp
     ports:
-      - "8081:8080"
+      - "8080:8080"

@@ -1,7 +1,6 @@
 package com.sadiqov.my_app.entitiy;
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.*;
 
 @Data
 @AllArgsConstructor
