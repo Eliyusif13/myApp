@@ -7,7 +7,7 @@ import org.springframework.data.elasticsearch.annotations.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(indexName = "myappdata")
+//@Document(indexName = "myappdata")
 public class Student {
 
     @Id
